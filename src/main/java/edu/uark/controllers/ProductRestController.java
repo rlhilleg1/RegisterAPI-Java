@@ -17,7 +17,7 @@ import edu.uark.commands.products.ProductQuery;
 import edu.uark.commands.products.ProductUpdateCommand;
 import edu.uark.commands.products.ProductsQuery;
 import edu.uark.models.api.Product;
-
+//2.4 emplyee check
 @RestController
 @RequestMapping(value = "/api/product")
 public class ProductRestController {
