@@ -30,6 +30,58 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		return record;
 	}
 
+	private String password;
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public EmployeeEntity setPassword(String password) {
+		if(!StringUtils.equals(this.password, password)) {
+			this.password = password;
+			this.propertyChanged(ProductFieldNames.PASSWORD);
+		}
+		return this;
+	}
+	
+	private String status;
+	public String getStatus() {
+		return this.password;
+	}
+	public EmployeeEntity setStatus(String status) {
+		if(!StringUtils.equals(this.password, password)) {
+			this.status = status;
+			this.propertyChanged(ProductFieldNames.STATUS);
+		}
+		return this;
+	}
+	
+	public Employee synchronize(Employee apiEmployee) {
+		//this.setCount(apiProduct.getCount());
+		//this.setLookupCode(apiProduct.getLookupCode());
+		this.setPassword(apiEmployee.getPassword());
+		this.setStatus(apiEmployee.getStatus());
+		apiEmployee.setId(this.getId());
+		//apiProduct.setCreatedOn(this.getCreatedOn());
+		
+		return apiProduct;
+	}
+	
+	public EmployeeEntity() {
+		super(DatabaseTable.EMPLOYEE);
+		this.password = StringUtils.EMPTY;
+		this.status = StringUtils.EMPTY;
+		//this.count = -1;
+		//this.lookupCode = StringUtils.EMPTY;
+	}
+	
+	public EmployeeEntity(Employee apiEmployee) {
+		super(DatabaseTable.EMPLOYEE);
+		this.status = apiEmployee.getStatus();
+		this.password = apiEmployee.getPassword();
+		//this.count = apiProduct.getCount();
+		//this.lookupCode = apiProduct.getLookupCode();
+	}
+
 	/*private String lookupCode;
 	public String getLookupCode() {
 		return this.lookupCode;
@@ -55,45 +107,4 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		
 		return this;
 	}*/
-	private String password;
-	public String getPassword() {
-		return this.password;
-	}
-	
-	public EmployeeEntity setPassword(String password) {
-		if(!StringUtils.equals(this.password, password)) {
-			this.password = password;
-			this.propertyChanged(ProductFieldNames.PASSWORD);
-		}
-		return this;
-	}
-	private String status;
-	public String getStatus() {
-		return this.password;
-	}
-	
-	public Employee synchronize(Employee apiProduct) {
-		//this.setCount(apiProduct.getCount());
-		//this.setLookupCode(apiProduct.getLookupCode());
-		this.setPassword(apiProduct.getPassword());
-		apiProduct.setId(this.getId());
-		//apiProduct.setCreatedOn(this.getCreatedOn());
-		
-		return apiProduct;
-	}
-	
-	public EmployeeEntity() {
-		super(DatabaseTable.PRODUCT);
-		
-		//this.count = -1;
-		//this.lookupCode = StringUtils.EMPTY;
-	}
-	
-	public EmployeeEntity(Product apiProduct) {
-		super(DatabaseTable.PRODUCT);
-		
-		//this.count = apiProduct.getCount();
-		//this.lookupCode = apiProduct.getLookupCode();
-	}
-	
 }
