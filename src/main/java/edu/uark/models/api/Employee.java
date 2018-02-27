@@ -3,9 +3,9 @@ package edu.uark.models.api;
 //import java.time.LocalDateTime; NO NEEDED
 import java.util.UUID;
 
-import edu.uark.models.entities.EmployeesEntity; // CHANGE 
+import edu.uark.models.entities.EmployeeEntity; // CHANGE 
 
-public class Employees {
+public class Employee {
 	
 	/*
 	 3.) Define the classes to represent the input 
@@ -26,7 +26,7 @@ public class Employees {
 	public UUID getId() {
 		return this.id;
 	}
-	public Employees setId(UUID id) {
+	public Employee setId(UUID id) {
 		this.id = id;
 		return this;
 	}
@@ -36,7 +36,7 @@ public class Employees {
 	public String getPassword() {
 		return this.password;
 	}
-	public Employees setPassword(String password) {
+	public Employee setPassword(String password) {
 		this.password = password;
 		return this;
 	}
@@ -46,7 +46,7 @@ public class Employees {
 	public String getStatus() {
 		return this.status;
 	}
-	public Employees setStatus(String status) {
+	public Employee setStatus(String status) {
 		this.status = status;
 		return this;
 	}
@@ -54,13 +54,13 @@ public class Employees {
 	
 	// Output: employee ID, password, status
 	
-	public Employees() { // Constructor
+	public Employee() { // Constructor
 		this.id = new UUID(0, 0);
 		this.password = "";
 		this.status = "";
 	}
 	
-	public Employees(EmployeesEntity employeesEntity) {
+	public Employee(EmployeeEntity employeesEntity) {
 		this.id = employeesEntity.getId();
 		this.password = employeesEntity.getPassword();
 		this.status = employeesEntity.getStatus();
