@@ -41,11 +41,11 @@ public class EmployeeRestController {
 	}*/
 
 	@RequestMapping(value = "/{EmployeeId}", method = RequestMethod.GET)
-	//public Product getProduct(@PathVariable UUID productId) {
-		//return (new ProductQuery()).
-			//setProductId(productId).
-			//execute();
-	//}
+	public Employee getEmployee(@PathVariable UUID employeeId) {
+		return (new EmployeeQuery()).
+		setEmployeeId(employeeId).
+		execute();
+	}
 
 	@RequestMapping(value = "/byLookupCode/{employeeLookupCode}", method = RequestMethod.GET)
 	public Employee getEmployeeByLookupCode(@PathVariable String EmployeeLookupCode) {
@@ -70,7 +70,6 @@ public class EmployeeRestController {
 			execute();
 	}*/
 	
-
 	
 @ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
