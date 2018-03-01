@@ -1,7 +1,7 @@
 package edu.uark.controllers;
 
 import java.util.List; // I am not sure if we need to use list for this class
-//import java.util.UUID;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.commands.products.ProductByLookupCodeQuery;
 import edu.uark.commands.employee.EmployeeLogin;
-//import edu.uark.commands.products.ProductsQuery;
+import edu.uark.commands.products.ProductsQuery;
 
 import edu.uark.models.api.Employee;
 import edu.uark.models.api.Product;
@@ -24,47 +24,52 @@ public class EmployeeRestController {
 	//Let us recall that we can use the Product class as model, but 
 	//the Employee class needs a different approach
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Product> getProducts() {
-		return (new ProductsQuery()).execute();
+	public List<Employee> () {
+		return (new EmployeeQuery()).execute();
 	}
-
+	
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-	public Product getProduct(@PathVariable UUID productId) {
-		return (new ProductQuery()).
-			setProductId(productId).
+	public Employee getEmployee(@PathVariable UUID emmployeeId) {
+		return (new EmployeeQuery()).
+			setEmployeeId(employeeId).
 			execute();
 	}
 
-	@RequestMapping(value = "/byLookupCode/{productLookupCode}", method = RequestMethod.GET)
-	public Product getProductByLookupCode(@PathVariable String productLookupCode) {
-		return (new ProductByLookupCodeQuery()).
-			setLookupCode(productLookupCode).
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
+	public List<Product> getProducts() {
+		return (new ProductsQuery()).execute();
+	}*/
+
+	@RequestMapping(value = "/{EmployeeId}", method = RequestMethod.GET)
+	//public Product getProduct(@PathVariable UUID productId) {
+		//return (new ProductQuery()).
+			//setProductId(productId).
+			//execute();
+	//}
+
+	@RequestMapping(value = "/byLookupCode/{employeeLookupCode}", method = RequestMethod.GET)
+	public Employee getEmployeeByLookupCode(@PathVariable String EmployeeLookupCode) {
+		return (new EmployeeByLookupCodeQuery()).
+			setLookupCode(EmployeeLookupCode). // See on Employee.Java
 			execute();
 	}*/
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)// changed
-	public Employee createEmployee(@RequestBody Product product) {// used different parameter
-		return (new ProductCreateCommand()).
-			setApiProduct(product).
+	public Employee createEmployee(@RequestBody Employee employee) 
+	{// used different parameter
+		return (new EmployeeCreateCommand()).
+			setApiEmployee(employee).
 			execute();
 	}
 	
-	@RequestMapping(value = "/{I}", method = RequestMethod.PUT)
-	public Product updateProduct(@PathVariable UUID productId, @RequestBody Product product) {
+	/*@RequestMapping(value = "/{I}", method = RequestMethod.PUT)
+	public Product updateProduct(@PathVariable UUID produId, @RequestBody Product product) {
 		return (new ProductUpdateCommand()).
 			setProductId(productId).
-			setApiProduct(product).
-			execute();
-	}
-	
-	/*@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
-	public void deleteProduct(@PathVariable UUID productId) {
-		(new ProductDeleteCommand()).
-			setProductId(productId).
+			setApiEmployee(employee).
 			execute();
 	}*/
+	
 
 	
 @ResponseBody
