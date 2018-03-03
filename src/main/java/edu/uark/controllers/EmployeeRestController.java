@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.uark.commands.employees.EmployeeByLookupCodeQuery;
 import edu.uark.commands.products.ProductByLookupCodeQuery;
-import edu.uark.commands.employee.EmployeeLogin;
+import edu.uark.commands.products.ProductQuery;
+//import edu.uark.commands.employee.EmployeeLogin;
 import edu.uark.commands.products.ProductsQuery;
 
 import edu.uark.models.api.Employee;
@@ -24,35 +26,23 @@ public class EmployeeRestController {
 	//Let us recall that we can use the Product class as model, but 
 	//the Employee class needs a different approach
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Employee> () {
+	public List<Employee> getEmployees() {
 		return (new EmployeeQuery()).execute();
 	}
 	
-	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-	public Employee getEmployee(@PathVariable UUID emmployeeId) {
+	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
+	public Employee getEmployee(@PathVariable UUID employeeId) {
 		return (new EmployeeQuery()).
 			setEmployeeId(employeeId).
 			execute();
 	}
 
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Product> getProducts() {
-		return (new ProductsQuery()).execute();
-	}*/
-
-	@RequestMapping(value = "/{EmployeeId}", method = RequestMethod.GET)
-	public Employee getEmployee(@PathVariable UUID employeeId) {
-		return (new EmployeeQuery()).
-		setEmployeeId(employeeId).
-		execute();
-	}
-
 	@RequestMapping(value = "/byLookupCode/{employeeLookupCode}", method = RequestMethod.GET)
-	public Employee getEmployeeByLookupCode(@PathVariable String EmployeeLookupCode) {
+	public Employee getEmployeeByLookupCode(@PathVariable String employeeLookupCode) {
 		return (new EmployeeByLookupCodeQuery()).
-			setLookupCode(EmployeeLookupCode). // See on Employee.Java
+			setLookupCode(employeeLookupCode).
 			execute();
-	}*/
+	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)// changed
 	public Employee createEmployee(@RequestBody Employee employee) 
@@ -69,7 +59,6 @@ public class EmployeeRestController {
 			setApiEmployee(employee).
 			execute();
 	}*/
-	
 	
 @ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
