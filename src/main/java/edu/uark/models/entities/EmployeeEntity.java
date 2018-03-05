@@ -63,7 +63,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		apiEmployee.setId(this.getId());
 		//apiProduct.setCreatedOn(this.getCreatedOn());
 		
-		return apiProduct;
+		return apiProduct;// Replace for employee
 	}
 	
 	public EmployeeEntity() {
