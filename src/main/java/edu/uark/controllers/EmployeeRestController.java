@@ -19,7 +19,7 @@ import edu.uark.commands.products.ProductQuery;
 import edu.uark.commands.products.ProductsQuery;
 
 import edu.uark.models.api.Employee;
-import edu.uark.models.api.EmployeeLogin;
+import edu.uark.commands.employees.EmployeeLogin;
 import edu.uark.models.api.Product;
 
 @RestController
@@ -71,7 +71,7 @@ public class EmployeeRestController {
 @RequestMapping(value = "/login", method = RequestMethod.POST)
 public Employee createEmployeeLogin(@RequestBody EmployeeLogin employee) {	
 return (new EmployeeByLookupCodeQuery()).
-		setEmployeeID(employee.getEmployeeID()).
+		setEmployeeId(employee.getEmployeeId()).
 		setPassword(DigestUtils.sha1Hex(employee.getPassword())).
 		execute();
 	}

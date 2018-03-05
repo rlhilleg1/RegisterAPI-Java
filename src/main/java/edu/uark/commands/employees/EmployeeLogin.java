@@ -1,5 +1,7 @@
 package edu.uark.commands.employees;
 
+// CLASS IS THE SAME AS PRODUCT UPDATE
+
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +39,7 @@ public class EmployeeLogin implements ResultCommandInterface<Employee> {
 	public UUID getEmployeeId() {
 		return this.employeeId;
 	}
-	public EmployeeUpdateCommand setEmployeeId(UUID employeeId) {
+	public EmployeeLogin setEmployeeId(UUID employeeId) {
 		this.employeeId = employeeId;
 		return this;
 	}
@@ -46,7 +48,7 @@ public class EmployeeLogin implements ResultCommandInterface<Employee> {
 	public Employee getApiEmployee() {
 		return this.apiEmployee;
 	}
-	public EmployeeUpdateCommand setApiEmployee(Employee apiEmployee) {
+	public EmployeeLogin setApiEmployee(Employee apiEmployee) {
 		this.apiEmployee = apiEmployee;
 		return this;
 	}
@@ -55,12 +57,12 @@ public class EmployeeLogin implements ResultCommandInterface<Employee> {
 	public EmployeeRepositoryInterface getEmployeeRepository() {
 		return this.employeeRepository;
 	}
-	public EmployeeUpdateCommand setEmployeeRepository(EmployeeRepositoryInterface employeeRepository) {
+	public EmployeeLogin setEmployeeRepository(EmployeeRepositoryInterface employeeRepository) {
 		this.employeeRepository = employeeRepository;
 		return this;
 	}
 	
-	public EmployeeUpdateCommand() {
+	public EmployeeLogin() {
 		this.employeeRepository = new EmployeeRepository();
 	}
 }

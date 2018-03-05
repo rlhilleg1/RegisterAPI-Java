@@ -82,7 +82,7 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 		}
 		return this;
 	}
-	private int EmployeeID;
+	private int EmployeeID;// CHECK
 	public int getEmployeeID() {
 		return this.EmployeeID;
 	}
