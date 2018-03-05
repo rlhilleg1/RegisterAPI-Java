@@ -5,20 +5,17 @@ import edu.uark.models.entities.EmployeeEntity; // CHANGE
 
 public class Employee {
 	
-	/*
-	 3.) Define the classes to represent the input 
-	 parameter and output result for #2. These will 
-	 probably be modeled off of edu.uark.models.api:
-	 Product. For example the input parameter will 
-	 probably need fields: employee ID and password. 
-	 The output result should contain all of the 
-	 employee's details along with a status (e.g., successful login).
-	  You will probably want to coordinate with 
-	  the developer working on tracker 2.5 for your 
-	  output result object definition.
-	  */
+	public Employee() { // Constructor
+		this.id = new UUID(0, 0);
+		this.password = "";
+		this.status = "";
+	}
 	
-	// Input: employee ID and password
+	public Employee(EmployeeEntity employeeEntity) {
+		this.id = employeeEntity.getId();
+		this.password = employeeEntity.getPassword();
+		this.status = employeeEntity.getStatus();
+	}
 	
 	private UUID id;
 	public UUID getId() {
@@ -47,19 +44,6 @@ public class Employee {
 		return this;
 	}
 	
+	// Input: employee ID and password
 	// Output: employee ID, password, status
-	
-	public Employee() { // Constructor
-		this.id = new UUID(0, 0);
-		this.password = "";
-		this.status = "";
-	}
-	
-	public Employee(EmployeeEntity employeeEntity) {
-		this.id = employeeEntity.getId();
-		this.password = employeeEntity.getPassword();
-		this.status = employeeEntity.getStatus();
-	}
-	
-
 }

@@ -1,4 +1,8 @@
-/*package edu.uark.models.api;
+package edu.uark.commands.employees;
+
+import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
 
 import edu.uark.commands.ResultCommandInterface;
 import edu.uark.controllers.exceptions.NotFoundException;
@@ -8,73 +12,55 @@ import edu.uark.models.entities.EmployeeEntity;
 import edu.uark.models.repositories.EmployeeRepository;
 import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
-// Input object for 2.3
+public class EmployeeLogin implements ResultCommandInterface<Employee> {
+	@Override
+	public Employee execute() {
+		//Validations
+		//if (StringUtils.isBlank(this.apiEmployee.getLookupCode())) {
+		//	throw new UnprocessableEntityException("lookupcode");
+		//}
 
-public class EmployeeLogin implements ResultCommandInterface < Employee > {
- private String employeeID;
- private Employee employeeObject;
- private EmployeeRepositoryInterface employeeRepository;
+		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeId);
+		if (employeeEntity == null) { //No record with the associated record ID exists in the database.
+			throw new NotFoundException("Employee");
+		}
+		
+		this.apiEmployee = employeeEntity.synchronize(this.apiEmployee); //Synchronize any incoming changes for UPDATE to the database.
+		
+		employeeEntity.save(); //Write, via an UPDATE, any changes to the database.
+		
+		return this.apiEmployee;
+	}
 
- @Override
- public Employee execute() {
-  if (this.employeeObject == null) {
-   throw new UnprocessableEntityException("Employee is null");
-  }
-
-  EmployeeEntity employeeEntity = this.employeeRepository.byRecordId(String.valueOf((employeeObject.getRecordId())));
-
-  if (employeeEntity.getId() == employeeObject.getId() && employeeEntity.getPassword() == employeeObject.getPassword()) {
-   return new Employee(employeeEntity);
-  } else {
-   throw new NotFoundException("Employee not found"); // Check message
-  }
- }
-
- public EmployeeLogin() {
-  this.employeeRepository = new EmployeeRepository(); // Repository will be added on 2.2
- }
-
- public EmployeeLogin setEmployeeID(Employee client) {
-  this.employeeObject = employeeID;
-  return this;
- }
-
- public Employee getEmployeeID() {
-  return this.employeeID;
- }
-
-
- public EmployeeLogin setProductRepository(EmployeeRepositoryInterface employeeRepository) {
-  this.employeeRepository = employeeRepository;
-  return this;
- }
-
- public EmployeeRepositoryInterface getProductRepository() {
-  return this.employeeRepository;
- }
-
-}
-
-
-
-
-
-/*public EmployeeLogin setEmployeeID(Employee client ) {
-	return this.employeeID;	
-}
+	//Properties
+	private UUID employeeId;
+	public UUID getEmployeeId() {
+		return this.employeeId;
+	}
+	public EmployeeUpdateCommand setEmployeeId(UUID employeeId) {
+		this.employeeId = employeeId;
+		return this;
+	}
 	
-public String getEmployeeID() {
-	return this.employeeID;	
-}*/
-
-/*private String employeeID;
+	private Employee apiEmployee;
+	public Employee getApiEmployee() {
+		return this.apiEmployee;
+	}
+	public EmployeeUpdateCommand setApiEmployee(Employee apiEmployee) {
+		this.apiEmployee = apiEmployee;
+		return this;
+	}
 	
-public EmployeeLogin setEmployeeID() {
-	return this.employeeID;	
+	private EmployeeRepositoryInterface employeeRepository;
+	public EmployeeRepositoryInterface getEmployeeRepository() {
+		return this.employeeRepository;
+	}
+	public EmployeeUpdateCommand setEmployeeRepository(EmployeeRepositoryInterface employeeRepository) {
+		this.employeeRepository = employeeRepository;
+		return this;
+	}
+	
+	public EmployeeUpdateCommand() {
+		this.employeeRepository = new EmployeeRepository();
+	}
 }
-	
-public String getEmployeeID() {
-	return this.employeeID;	
-}*/
-
-

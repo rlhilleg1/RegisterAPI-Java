@@ -9,7 +9,7 @@ public class ProductFieldNames extends BaseFieldNames {
 	public static final String STATUS = "Active";
 	public static final String FIRSTNAME = "FirstName";
 	public static final String LASTNAME = "LastName";
-	public static final String EMPLOYEEID = "EmplyeeID";
+	public static final String EMPLOYEEID = "EmployeeID";
 	public static final String ROLE = "Role";
 	public static final String MANAGER = "manager";
 	
