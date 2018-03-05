@@ -16,7 +16,7 @@ import edu.uark.models.repositories.interfaces.ProductRepositoryInterface;
 
 public class EmployeeRepository extends BaseRepository<EmployeeEntity> implements EmployeeRepositoryInterface {
 	@Override
-	public EmployeeEntity byLookupCode(String lookupCode) {
+	public EmployeeEntity byEmployeeID(int EmployeeID) {
 		return this.firstOrDefaultWhere(
 			new WhereContainer(
 				(new WhereClause()).
@@ -27,7 +27,7 @@ public class EmployeeRepository extends BaseRepository<EmployeeEntity> implement
 			),
 			(ps) -> {
 				try {
-					ps.setObject(1, lookupCode.toLowerCase());
+					ps.setObject(1, EmployeeID);
 				} catch (SQLException e) {}
 
 				return ps;
@@ -43,4 +43,5 @@ public class EmployeeRepository extends BaseRepository<EmployeeEntity> implement
 	public EmployeeRepository() {
 		super(DatabaseTable.EMPLOYEE);
 	}
+
 }

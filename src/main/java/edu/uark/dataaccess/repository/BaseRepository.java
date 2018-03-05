@@ -22,6 +22,7 @@ import edu.uark.dataaccess.repository.helpers.join.JoinContainer;
 import edu.uark.dataaccess.repository.helpers.orderby.OrderByContainer;
 import edu.uark.dataaccess.repository.helpers.where.WhereClause;
 import edu.uark.dataaccess.repository.helpers.where.WhereContainer;
+import edu.uark.models.entities.EmployeeEntity;
 
 public abstract class BaseRepository<T extends BaseEntity<T>> implements BaseRepositoryInterface<T> {
 	public int count() {
@@ -452,4 +453,5 @@ public abstract class BaseRepository<T extends BaseEntity<T>> implements BaseRep
 	protected BaseRepository(DatabaseTable primaryTable) {
 		this.primaryTable = primaryTable;
 	}
+
 }
