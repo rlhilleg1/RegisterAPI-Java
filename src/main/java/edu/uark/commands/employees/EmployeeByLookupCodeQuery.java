@@ -1,4 +1,4 @@
-package edu.uark.commands.employees;
+/*package edu.uark.commands.employees;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,6 +9,7 @@ import edu.uark.models.api.Employee;
 import edu.uark.models.api.Product;
 import edu.uark.models.entities.EmployeeEntity;
 import edu.uark.models.entities.ProductEntity;
+import edu.uark.models.repositories.EmployeeRepository;
 //import edu.uark.models.repositories.EmployeeRepository;
 import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
@@ -65,3 +66,4 @@ public class EmployeeByLookupCodeQuery implements ResultCommandInterface<Employe
 		this.employeeRepository = new EmployeeRepository();
 	}
 }
+*/

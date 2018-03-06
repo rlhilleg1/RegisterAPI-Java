@@ -9,6 +9,7 @@ public class Employee {
 	
 	public Employee() { // Constructor
 		this.id = new UUID(0, 0);
+		this.EmployeeID = 0; 
 		this.password = "";
 		this.status = "";
 		this.createdOn = LocalDateTime.now();
@@ -19,7 +20,8 @@ public class Employee {
 	}
 	
 	public Employee(EmployeeEntity employeeEntity) {
-		this.id = employeeEntity.getEmployeeID();
+		this.id = employeeEntity.getId();
+		this.EmployeeID = employeeEntity.getEmployeeID();
 		this.password = employeeEntity.getPassword();
 		this.status = employeeEntity.getStatus();
 		this.createdOn = employeeEntity.getCreatedOn();
@@ -30,7 +32,7 @@ public class Employee {
 	}
 	
 	private UUID id;
-	public UUID getEmployeeID() {
+	public UUID getId() {
 		return this.id;
 	}
 	public Employee setId(UUID id) {
@@ -66,6 +68,15 @@ public class Employee {
 	}
 	
 	///////////////////////////////
+	
+	private int EmployeeID;
+	public int getEmployeeID() {
+		return this.EmployeeID;
+	}
+	public Employee setEmployeeID(int EmployeeID) {
+		this.EmployeeID = EmployeeID;
+		return this;
+	}
 	
 	private String firstname;
 	public String getFirstName() {

@@ -132,7 +132,6 @@ public class EmployeeEntity extends BaseEntity<EmployeeEntity> {
 =======
 		return apiEmployee;
 	}*/
->>>>>>> ab45c7d5ff86a6f8a96f152fc90f711d5a39d097
 	
 	public EmployeeEntity() {
 		super(DatabaseTable.EMPLOYEE);

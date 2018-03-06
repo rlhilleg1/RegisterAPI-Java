@@ -4,8 +4,6 @@ package edu.uark.commands.employees;
 
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
-
 import edu.uark.commands.ResultCommandInterface;
 import edu.uark.controllers.exceptions.NotFoundException;
 import edu.uark.controllers.exceptions.UnprocessableEntityException;
@@ -14,20 +12,24 @@ import edu.uark.models.entities.EmployeeEntity;
 import edu.uark.models.repositories.EmployeeRepository;
 import edu.uark.models.repositories.interfaces.EmployeeRepositoryInterface;
 
+import org.apache.commons.lang3.StringUtils;
+
+
 public class EmployeeLogin implements ResultCommandInterface<Employee> {
 	@Override
 	public Employee execute() {
 		//Validations
-		//if (StringUtils.isBlank(this.apiEmployee.getLookupCode())) {
-		//	throw new UnprocessableEntityException("lookupcode");
-		//}
+		if (StringUtils.isBlank(this.apiEmployee.getEmployeeID())) {
+			throw new UnprocessableEntityException("EmployeeID");
+		}
 
-		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeId);
+		EmployeeEntity employeeEntity = this.employeeRepository.get(this.employeeID);
 		if (employeeEntity == null) { //No record with the associated record ID exists in the database.
 			throw new NotFoundException("Employee");
 		}
 		
-		this.apiEmployee = employeeEntity.synchronize(this.apiEmployee); //Synchronize any incoming changes for UPDATE to the database.
+		// WE ARE NOT USING "synchronize" CLASS
+		//this.apiEmployee = employeeEntity.synchronize(this.apiEmployee); //Synchronize any incoming changes for UPDATE to the database.
 		
 		employeeEntity.save(); //Write, via an UPDATE, any changes to the database.
 		
@@ -35,12 +37,22 @@ public class EmployeeLogin implements ResultCommandInterface<Employee> {
 	}
 
 	//Properties
-	private UUID employeeId;
-	public UUID getEmployeeId() {
-		return this.employeeId;
+	private UUID employeeID;
+	public UUID getEmployeeID() {
+		return this.employeeID;
 	}
-	public EmployeeLogin setEmployeeId(UUID employeeId) {
-		this.employeeId = employeeId;
+	public EmployeeLogin setEmployeeID(UUID employeeID) {
+		this.employeeID = employeeID;
+		return this;
+	}
+	
+	private String password;
+	public String getPassword() {
+		return this.password;
+	}
+	public EmployeeLogin setPassword(String password) {
+		//this.password = byteArrayToHexString(password);
+		this.password = (password);
 		return this;
 	}
 	
